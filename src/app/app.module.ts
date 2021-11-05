@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule} from '@angular/common/http';
 import { PruebaComponent } from './components/prueba/prueba.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { PruebaComponent } from './components/prueba/prueba.component';
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    HttpClientModule
+    HttpClientModule, NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
