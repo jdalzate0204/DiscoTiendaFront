@@ -13,6 +13,7 @@ import { CrearAlbumComponent } from './components/Administrador/crear-album/crea
 import { InicioDeSesionComponent } from './components/Principal/inicio-de-sesion/inicio-de-sesion.component';
 import { HistorialVentasComponent } from './components/Administrador/historial-ventas/historial-ventas.component';
 import { PagoComponent } from './components/Tienda/pago/pago.component';
+import { CatalogoComponent } from './components/Tienda/catalogo/catalogo.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PagoComponent } from './components/Tienda/pago/pago.component';
     CrearAlbumComponent,
     InicioDeSesionComponent,
     HistorialVentasComponent,
-    PagoComponent
+    PagoComponent,
+    CatalogoComponent
   ],
   imports: [
     BrowserModule,

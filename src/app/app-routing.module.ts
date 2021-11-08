@@ -6,10 +6,12 @@ import { CrearCancionComponent } from './components/Administrador/crear-cancion/
 import { EspacioAdministradorComponent } from './components/Administrador/espacio-administrador/espacio-administrador.component';
 import { HistorialVentasComponent } from './components/Administrador/historial-ventas/historial-ventas.component';
 import { InicioDeSesionComponent } from './components/Principal/inicio-de-sesion/inicio-de-sesion.component';
+import { CatalogoComponent } from './components/Tienda/catalogo/catalogo.component';
 import { PagoComponent } from './components/Tienda/pago/pago.component';
 
 const routes: Routes = [
-  {path: '', component: EspacioAdministradorComponent},
+  {path: '', component: CatalogoComponent},
+  {path: 'catalogo', component: CatalogoComponent},
   {path: 'iniciarSesion', component: InicioDeSesionComponent},
   {path: 'espacioAdministrador', component: EspacioAdministradorComponent},
   {path: 'artistas', component: CrearArtistaComponent},
