@@ -5,6 +5,7 @@ import { ArtistaService } from 'src/app/_service/artistas.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ValidacionComponent } from '../../Principal/validacion/validacion.component';
 
 @Component({
   selector: 'app-crear-artista',

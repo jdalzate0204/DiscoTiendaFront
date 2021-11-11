@@ -13,38 +13,37 @@
   <section class="u-clearfix u-palette-1-light-3 u-section-3" id="sec-bd70">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-form u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+        <form action="#" [formGroup]="albumForm" (ngSubmit)="crearAlbum($event)" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-1">
             <label for="select-0aef" class="u-custom-font u-heading-font u-label">Artista</label>
             <div class="u-form-select-wrapper">
-              <select id="select-0aef" name="selectArtista" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required">
-                <option value="Seleccionar">Seleccionar</option>
-                <option value="Artista1">Artista1</option>
-                <option value="Artista2">Artista2</option>
-                <option value="Artista3">Artista3</option>
-              </select>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Artista</mat-label>
+                <mat-select formControlName = "artista" matSelect (ngModelChange)="selectArtista.id" required>
+                    <mat-option *ngFor="let a of artista" value ={{a.id}}>{{a.nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
           <div class="u-form-group u-form-name u-form-partition-factor-2">
             <label for="name-f14c" class="u-custom-font u-heading-font u-label">Nombre</label>
-            <input type="text" placeholder="Ingrese el nombre del album" id="name-f14c" name="inputNombre" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" maxlength="20">
+            <input type="text" formControlName = "nombre" placeholder="Ingrese el nombre del album" id="name-f14c" name="inputNombre" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" maxlength="20">
           </div>
           <div class="u-form-group u-form-textarea u-form-group-3">
             <label for="textarea-ce46" class="u-custom-font u-heading-font u-label">Descripción del album</label>
-            <textarea rows="3" cols="50" id="textarea-ce46" name="textarea" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" placeholder="Ingrese una breve descripción" maxlength="150"></textarea>
+            <textarea formControlName = "descripcion" rows="3" cols="50" id="textarea-ce46" name="textarea" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" placeholder="Ingrese una breve descripción" maxlength="150"></textarea>
           </div>
           <div class="u-form-date u-form-group u-form-partition-factor-2">
             <label for="email-f14c" class="u-custom-font u-heading-font u-label">Fecha de lanzamiento</label>
-            <input type="date" id="email-f14c" name="inputFechaL" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required">
+            <input formControlName = "fechaLanzamiento" type="date" id="email-f14c" name="inputFechaL" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required">
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-5">
             <label for="text-20a5" class="u-custom-font u-heading-font u-label">Precio</label>
-            <input type="text" placeholder="Ingrese el precio del album" id="text-20a5" name="inputPrecio" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required" maxlength="7">
+            <input formControlName = "precio" type="text" placeholder="Ingrese el precio del album" id="text-20a5" name="inputPrecio" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required" maxlength="7">
           </div>
           <div class="u-form-group u-form-group-6">
             <label for="text-d21c" class="u-custom-font u-heading-font u-label">Imagen</label>
-            <input type="text" placeholder="Suba la imagen del album" id="text-d21c" name="inputImagen" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required">
+            <input formControlName = "imagen" type="text" placeholder="Suba la imagen del album" id="text-d21c" name="inputImagen" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required">
           </div>
           <div class="u-align-right u-form-group u-form-submit">
             <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-dark-1 u-radius-25 u-btn-1">Añadir</a>
@@ -75,9 +74,6 @@
             </a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
-          <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
-          <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor, corrija los errores y vuelva a intentarlo. </div>
-          <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
     </div>

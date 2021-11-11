@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Artista } from '../_model/Artista';
 import { GeneroMusical } from '../_model/GeneroMusical';
 import { Sexo } from '../_model/Sexo';
+import { ArtistaSelect } from '../_model/ArtistaSelect';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class ArtistaService {
 
   getlistarSexo(){
     return this.http.get<Sexo[]>(this.URL+"/listarSexo");
+  }
+  
+  getSelectArtista() {
+    return this.http.get<ArtistaSelect[]>(this.URL + "/listarArtistas");
   }
 }
 

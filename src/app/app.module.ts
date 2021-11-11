@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { HttpClientModule} from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { EspacioAdministradorComponent } from './components/Administrador/espacio-administrador/espacio-administrador.component';
@@ -17,6 +15,7 @@ import { CatalogoComponent } from './components/Tienda/catalogo/catalogo.compone
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ValidacionComponent } from './components/Principal/validacion/validacion.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     InicioDeSesionComponent,
     HistorialVentasComponent,
     PagoComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    ValidacionComponent
   ],
   imports: [
     BrowserModule,

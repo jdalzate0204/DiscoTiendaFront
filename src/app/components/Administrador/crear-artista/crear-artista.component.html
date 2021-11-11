@@ -14,7 +14,7 @@
   <section class="u-clearfix u-palette-1-light-3 u-section-3" id="sec-bd70">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-form u-form-1">
-        <form action="" [formGroup]="artistaForm" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true">
+        <form action="" [formGroup]="artistaForm" (ngSubmit)="crearArtista($event)" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true">
           <div class="u-form-group u-form-name">
             <label for="name-f14c" class="u-custom-font u-heading-font u-label">Nombre</label>
             <input formControlName="nombre" type="text" placeholder="Ingrese el nombre del artista" id="name-f14c" name="inputNombre" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1" required="" maxlength="50">
@@ -32,7 +32,6 @@
                     <mat-option *ngFor="let b of sexo" value ={{b.id}}>{{b.descripcion}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
             </div>
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
@@ -48,7 +47,6 @@
                     <mat-option *ngFor="let b of generoMusical" value ={{b.id}}>{{b.descripcion}}</mat-option>
                 </mat-select>
               </mat-form-field>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
             </div>
           </div>
           <div class="u-align-right u-form-group u-form-submit">
