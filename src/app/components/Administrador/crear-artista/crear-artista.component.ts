@@ -6,6 +6,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ThrowStmt } from '@angular/compiler';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValidacionComponent } from '../../Principal/validacion/validacion.component';
+import { Artista } from 'src/app/_model/Artista';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-crear-artista',
@@ -21,7 +23,8 @@ export class CrearArtistaComponent implements OnInit {
  artistaForm!:FormGroup;
 
   constructor(private artistasService:ArtistaService,
-    private _snackBar:MatSnackBar){;
+    private _snackBar:MatSnackBar,
+    private artistaService:ArtistaService ){;
     this.artistaForm=this.createFormGroup();
     
   }
@@ -70,6 +73,25 @@ export class CrearArtistaComponent implements OnInit {
 
   crearArtista(event: Event){
    if(this.artistaForm.valid){
+     const value =this.artistaForm.value;
+
+     let artista:Artista=new Artista();
+     artista.nombre=value.nombre;
+     artista.fechaNacimiento=value.fechaNacimiento;
+     artista.nacionalidad=value.nacionalidad;
+     artista.idGeneroMusical=value.generoMusical;
+     artista.idSexo=value.sexo;
+
+     this.artistaService.postCrearArtista(artista).subscribe(data =>{
+     },err=>{
+        if(err.status ==400){
+
+        }else if (err.status==409){
+          this._snackBar.open('El artista ya esta registrado','cerrar',{
+             duration:3000
+          });
+        }
+     });
 
    }else{
     let error =this.mensajeError();
