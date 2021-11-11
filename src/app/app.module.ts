@@ -14,6 +14,9 @@ import { InicioDeSesionComponent } from './components/Principal/inicio-de-sesion
 import { HistorialVentasComponent } from './components/Administrador/historial-ventas/historial-ventas.component';
 import { PagoComponent } from './components/Tienda/pago/pago.component';
 import { CatalogoComponent } from './components/Tienda/catalogo/catalogo.component';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,12 @@ import { CatalogoComponent } from './components/Tienda/catalogo/catalogo.compone
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    HttpClientModule, NoopAnimationsModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSnackBarModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

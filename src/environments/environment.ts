@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'DiscoTiendaWar/api'
+  API: 'http://localhost:8080/DiscoTiendaWar/api'
 };
 
 /*

@@ -14,39 +14,40 @@
   <section class="u-clearfix u-palette-1-light-3 u-section-3" id="sec-bd70">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-form u-form-1">
-        <form action="" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true">
+        <form action="" [formGroup]="artistaForm" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true">
           <div class="u-form-group u-form-name">
             <label for="name-f14c" class="u-custom-font u-heading-font u-label">Nombre</label>
-            <input type="text" placeholder="Ingrese el nombre del artista" id="name-f14c" name="inputNombre" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1" required="" maxlength="50">
+            <input formControlName="nombre" type="text" placeholder="Ingrese el nombre del artista" id="name-f14c" name="inputNombre" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-1" required="" maxlength="50">
           </div>
           <div class="u-form-date u-form-group u-form-partition-factor-2">
             <label for="email-f14c" class="u-custom-font u-heading-font u-label">Fecha de nacimiento</label>
-            <input type="date" id="email-f14c" name="inputFechaN" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-2" required="required">
+            <input formControlName="fechaNacimiento" type="date" id="email-f14c" name="inputFechaN" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-2" required="required">
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-3">
             <label for="select-0aef" class="u-custom-font u-heading-font u-label">Sexo</label>
             <div class="u-form-select-wrapper">
-              <select id="select-0aef" name="selectSexo" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-3" required="required">
-                <option value="Seleccionar">Seleccionar</option>
-                <option value="Femenino">Femenino</option>
-                <option value="Masculino">Masculino</option>
-              </select>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Sexo</mat-label>
+                <mat-select matSelect formControlName="sexo" (ngModelChange)="selectSexo.id" required>
+                    <mat-option *ngFor="let b of sexo" value ={{b.id}}>{{b.descripcion}}</mat-option>
+                </mat-select>
+              </mat-form-field>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
             </div>
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
             <label for="text-20a5" class="u-custom-font u-heading-font u-label">Nacionalidad</label>
-            <input type="text" placeholder="Ingrese la nacionalidad del artista" id="text-20a5" name="inputNacionalidad" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-4" required="required" maxlength="20">
+            <input formControlName="nacionalidad" type="text" placeholder="Ingrese la nacionalidad del artista" id="text-20a5" name="inputNacionalidad" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-4" required="required" maxlength="20">
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-5">
             <label for="select-e0c1" class="u-custom-font u-heading-font u-label">Genero Musical</label>
             <div class="u-form-select-wrapper">
-              <select id="select-e0c1" name="selectGeneroMusical" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-5" required="required">
-                <option value="Seleccionar">Seleccionar</option>
-                <option value="GeneroMusical1">GeneroMusical1</option>
-                <option value="GeneroMusical2">GeneroMusical2</option>
-                <option value="GeneroMusical3">GeneroMusical3</option>
-              </select>
+              <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Genero musical</mat-label>
+                <mat-select matSelect formControlName="generoMusical" (ngModelChange)="selectGenero.id" required>
+                    <mat-option *ngFor="let b of generoMusical" value ={{b.id}}>{{b.descripcion}}</mat-option>
+                </mat-select>
+              </mat-form-field>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
             </div>
           </div>
