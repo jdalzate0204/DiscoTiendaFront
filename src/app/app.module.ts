@@ -16,6 +16,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ValidacionComponent } from './components/Principal/validacion/validacion.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { ValidacionComponent } from './components/Principal/validacion/validacio
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule 
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
