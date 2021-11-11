@@ -15,12 +15,12 @@
       <div class="u-form u-form-1">
         <form action="#" [formGroup]="albumForm" (ngSubmit)="crearAlbum($event)" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-1">
-            <label for="select-0aef" class="u-custom-font u-heading-font u-label">Artista</label>
             <div class="u-form-select-wrapper">
-              <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
                 <mat-label>Artista</mat-label>
                 <mat-select formControlName = "artista" matSelect (ngModelChange)="selectArtista.id" required>
-                    <mat-option *ngFor="let a of artista" value ={{a.id}}>{{a.nombre}}</mat-option>
+                  <mat-option>--</mat-option>  
+                  <mat-option *ngFor="let a of artista" value ={{a.id}}>{{a.nombre}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -34,8 +34,15 @@
             <textarea formControlName = "descripcion" rows="3" cols="50" id="textarea-ce46" name="textarea" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" placeholder="Ingrese una breve descripción" maxlength="150"></textarea>
           </div>
           <div class="u-form-date u-form-group u-form-partition-factor-2">
-            <label for="email-f14c" class="u-custom-font u-heading-font u-label">Fecha de lanzamiento</label>
-            <input formControlName = "fechaLanzamiento" type="date" id="email-f14c" name="inputFechaL" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="required">
+            <!--<label for="email-f14c" class="u-custom-font u-heading-font u-label">Fecha de lanzamiento</label>
+            <input formControlName = "fechaLanzamiento" type="date" id="email-f14c" name="inputFechaL" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="">        
+            -->
+            <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
+              <mat-label>Fecha de Lanzamiento</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName = "fechaLanzamiento" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-group-5">
             <label for="text-20a5" class="u-custom-font u-heading-font u-label">Precio</label>
@@ -49,9 +56,6 @@
             <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-dark-1 u-radius-25 u-btn-1">Añadir</a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
-          <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
-          <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor, corrija los errores y vuelva a intentarlo. </div>
-          <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
     </div>

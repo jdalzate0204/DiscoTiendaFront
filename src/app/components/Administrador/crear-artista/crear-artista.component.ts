@@ -60,7 +60,7 @@ export class CrearArtistaComponent implements OnInit {
       error.push("Ingrese el sexo");
     }
     if(this.artistaForm.controls.nacionalidad.hasError('required')){
-      error.push("Ingresela nacionalidad");
+      error.push("Ingrese la nacionalidad");
     }
     if(this.artistaForm.controls.generoMusical.hasError('required')){
       error.push("Ingrese el genero musical");
