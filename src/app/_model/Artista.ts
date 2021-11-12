@@ -5,4 +5,6 @@ export class Artista {
     nacionalidad!: string;
     idSexo!: number;
     idGeneroMusical!: number;
+    sexo!:string;
+    generoMusical!:string;
 }

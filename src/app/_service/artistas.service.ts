@@ -26,9 +26,13 @@ export class ArtistaService {
   getlistarSexo(){
     return this.http.get<Sexo[]>(this.URL+"/listarSexo");
   }
-  
+
   getSelectArtista() {
     return this.http.get<ArtistaSelect[]>(this.URL + "/listarArtistas");
+  }
+
+  getListarArtista(){
+    return this.http.get<Artista[]>(this.URL+"/listar");
   }
 }
 
