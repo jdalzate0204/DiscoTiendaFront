@@ -12,7 +12,11 @@ export class AlbumService {
 
   constructor(private http: HttpClient) { }
 
-  postCrearAlbum(album: Album){
+  postCrearAlbum(album: Album) {
     return this.http.post<Album>(this.URL + "/guardar", album);
+  }
+
+  getListarAlbumes() {
+    return this.http.get<Album[]>(this.URL + "/listar");
   }
 }

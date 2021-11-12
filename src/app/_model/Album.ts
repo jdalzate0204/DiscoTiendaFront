@@ -6,4 +6,5 @@ export class Album {
     fechaLanzamiento!: string;
     precio!: number;
     idArtista!: number;
+    artista!: string;
 }
