@@ -32,7 +32,7 @@
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-3">
             <label for="select-0aef" class="u-custom-font u-heading-font u-label">Sexo</label>
             <div class="u-form-select-wrapper">
-              <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
                 <mat-label>Sexo</mat-label>
                 <mat-select matSelect formControlName="sexo" (ngModelChange)="selectSexo.id" required>
                     <mat-option *ngFor="let b of sexo" value ={{b.id}}>{{b.descripcion}}</mat-option>
@@ -47,7 +47,7 @@
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-5">
             <label for="select-e0c1" class="u-custom-font u-heading-font u-label">Genero Musical</label>
             <div class="u-form-select-wrapper">
-              <mat-form-field appearance="fill" style="width: 100%;">
+              <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
                 <mat-label>Genero musical</mat-label>
                 <mat-select matSelect formControlName="generoMusical" (ngModelChange)="selectGenero.id" required>
                     <mat-option *ngFor="let b of generoMusical" value ={{b.id}}>{{b.descripcion}}</mat-option>
@@ -94,53 +94,34 @@
   <section class="u-align-center u-clearfix u-palette-1-light-1 u-section-6" id="sec-ec5e">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
-        <table class="u-table-entity u-table-entity-1">
-          <colgroup>
-            <col width="20%">
-            <col width="20%">
-            <col width="18.8%">
-            <col width="21.2%">
-            <col width="20%">
-          </colgroup>
-          <thead class="u-align-center u-custom-font u-heading-font u-palette-5-dark-1 u-table-header u-table-header-1">
-            <tr style="height: 34px;">
-              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Fecha de nacimiento</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Sexo</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Nacionalidad</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Genero Musical</th>
-            </tr>
-          </thead>
-          <tbody class="u-align-center u-custom-font u-heading-font u-table-body u-white u-table-body-1">
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 3</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 4</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-          </tbody>
+        <table mat-table [dataSource]="dataSource" style="text-align: center;" >
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre  </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="fecha Nacimiento">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> fecha Nacimiento </th>
+            <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento | date: 'dd/MM/yyyy'}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Nacionalidad">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;" > Nacionalidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.nacionalidad}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Sexo">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Sexo </th>
+            <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Genero Musical">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Genero Musical </th>
+            <td mat-cell *matCellDef="let element"> {{element.generoMusical}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
       </div>
     </div>

@@ -3,11 +3,10 @@ import { GeneroMusical } from 'src/app/_model/GeneroMusical';
 import { Sexo } from 'src/app/_model/Sexo';
 import { ArtistaService } from 'src/app/_service/artistas.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ThrowStmt } from '@angular/compiler';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValidacionComponent } from '../../Principal/validacion/validacion.component';
 import { Artista } from 'src/app/_model/Artista';
-import { Subscriber } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
   selector: 'app-crear-artista',
@@ -21,6 +20,11 @@ export class CrearArtistaComponent implements OnInit {
  selectGenero: GeneroMusical={id:0,descripcion: ''};
  generoMusical!:Sexo[];
  artistaForm!:FormGroup;
+ artista!:Artista[];
+ dataSource=new MatTableDataSource<Artista>();
+ displayedColumns!: string[];
+
+
 
   constructor(private artistasService:ArtistaService,
     private _snackBar:MatSnackBar,
@@ -36,7 +40,7 @@ export class CrearArtistaComponent implements OnInit {
       nombre: new FormControl('', [Validators.required]),
       fechaNacimiento: new FormControl('', [Validators.required]),
       sexo: new FormControl('', [Validators.required]),
-      nacionalidad: new FormControl('', [Validators.required, Validators.email]),
+      nacionalidad: new FormControl('', [Validators.required]),
       generoMusical: new FormControl('', [Validators.required]),
     });
   }
@@ -48,6 +52,16 @@ export class CrearArtistaComponent implements OnInit {
     this.artistasService.getlistarSexo().subscribe(data =>{
       this.sexo=data;
     });
+    this.artistaService.getListarArtista().subscribe(data =>{
+      this.artista=data
+      if(this.artista!=undefined){
+        this.dataSource=new MatTableDataSource(this.artista);
+      }
+    });
+
+    this.displayedColumns=['Nombre','fecha Nacimiento','Nacionalidad','Sexo','Genero Musical'];
+
+
   }
 
   mensajeError(){
@@ -83,8 +97,15 @@ export class CrearArtistaComponent implements OnInit {
      artista.idSexo=value.sexo;
 
      this.artistaService.postCrearArtista(artista).subscribe(data =>{
+      this._snackBar.open('Artista registrado exitosamente','cerrar',{
+        duration:3000
+     })
+      this.artistaForm.reset();
      },err=>{
         if(err.status ==400){
+          this._snackBar.open('Error de validaciones','cerrar',{
+            duration:3000
+         });
 
         }else if (err.status==409){
           this._snackBar.open('El artista ya esta registrado','cerrar',{
