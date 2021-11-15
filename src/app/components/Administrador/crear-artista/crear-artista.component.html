@@ -30,12 +30,12 @@
             </mat-form-field>
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-3">
-            <label for="select-0aef" class="u-custom-font u-heading-font u-label">Sexo</label>
             <div class="u-form-select-wrapper">
               <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
                 <mat-label>Sexo</mat-label>
                 <mat-select matSelect formControlName="sexo" (ngModelChange)="selectSexo.id" required>
-                    <mat-option *ngFor="let b of sexo" value ={{b.id}}>{{b.descripcion}}</mat-option>
+                  <mat-option>--</mat-option>  
+                  <mat-option *ngFor="let b of sexo" value ={{b.id}}>{{b.descripcion}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -45,12 +45,12 @@
             <input formControlName="nacionalidad" type="text" placeholder="Ingrese la nacionalidad del artista" id="text-20a5" name="inputNacionalidad" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-input-4" required="required" maxlength="20">
           </div>
           <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-5">
-            <label for="select-e0c1" class="u-custom-font u-heading-font u-label">Genero Musical</label>
             <div class="u-form-select-wrapper">
               <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
                 <mat-label>Genero musical</mat-label>
                 <mat-select matSelect formControlName="generoMusical" (ngModelChange)="selectGenero.id" required>
-                    <mat-option *ngFor="let b of generoMusical" value ={{b.id}}>{{b.descripcion}}</mat-option>
+                  <mat-option>--</mat-option>  
+                  <mat-option *ngFor="let b of generoMusical" value ={{b.id}}>{{b.descripcion}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

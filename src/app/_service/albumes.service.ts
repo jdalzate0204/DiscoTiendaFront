@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Album } from '../_model/Album';
+import { AlbumSelect } from '../_model/AlbumSelect';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class AlbumService {
 
   getListarAlbumes() {
     return this.http.get<Album[]>(this.URL + "/listar");
+  }
+
+  getListarSelect() {
+    return this.http.get<AlbumSelect[]>(this.URL + "/listarAlbumes");
   }
 }
