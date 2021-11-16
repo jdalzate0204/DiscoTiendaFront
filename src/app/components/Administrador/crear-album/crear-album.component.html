@@ -31,7 +31,7 @@
           </div>
           <div class="u-form-group u-form-textarea u-form-group-3">
             <label for="textarea-ce46" class="u-custom-font u-heading-font u-label">Descripción del album</label>
-            <textarea formControlName = "descripcion" rows="3" cols="50" id="textarea-ce46" name="textarea" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" placeholder="Ingrese una breve descripción" maxlength="150"></textarea>
+            <textarea formControlName = "descripcion" rows="3" cols="50" id="textarea-ce46" name="textarea" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" placeholder="Ingrese una breve descripción" maxlength="300"></textarea>
           </div>
           <div class="u-form-date u-form-group u-form-partition-factor-2">
             <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
@@ -113,10 +113,6 @@
             <td mat-cell *matCellDef="let element"> {{element.artista}} </td>
           </ng-container>
         
-          <ng-container matColumnDef="comentario">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Comentario </th>
-            <td mat-cell *matCellDef="let element"> {{element.comentarioDeCliente}} </td>
-          </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>

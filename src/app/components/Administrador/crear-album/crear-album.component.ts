@@ -51,7 +51,7 @@ export class CrearAlbumComponent implements OnInit {
       }
     });
 
-    this.displayedColumns = ['Nombre', 'Imagen', 'Descripcion', 'FechaLanzamiento', 'Precio', 'Artista'];
+    this.displayedColumns = ['Nombre', 'Artista', 'Imagen', 'Descripcion', 'FechaLanzamiento', 'Precio'];
   }
 
   mensajeError() {
@@ -100,7 +100,7 @@ export class CrearAlbumComponent implements OnInit {
         this._snackBar.open('Álbum registrado exitosamente', 'Cerrar', {
           duration: 3000
         })
-        this.albumForm.reset();
+        this.onResetForm();
       }, err => {
         if(err.status == 400) {
           this._snackBar.open('Error de validación de campos', 'Cerrar', {
@@ -121,5 +121,13 @@ export class CrearAlbumComponent implements OnInit {
         duration: 5000
       });
     }
+  }
+
+  onResetForm() {
+    this.albumForm.reset();
+
+    Object.keys(this.albumForm.controls).forEach(key => {
+      this.albumForm.get(key)?.setErrors(null);
+    });
   }
 }

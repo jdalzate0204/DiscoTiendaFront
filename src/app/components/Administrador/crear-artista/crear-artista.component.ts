@@ -59,7 +59,7 @@ export class CrearArtistaComponent implements OnInit {
       }
     });
 
-    this.displayedColumns=['Nombre','fecha Nacimiento','Nacionalidad','Sexo','Genero Musical'];
+    this.displayedColumns=['Nombre','Fecha Nacimiento','Nacionalidad','Sexo','Genero Musical'];
 
 
   }
@@ -100,7 +100,7 @@ export class CrearArtistaComponent implements OnInit {
       this._snackBar.open('Artista registrado exitosamente','cerrar',{
         duration:3000
      })
-      this.artistaForm.reset();
+      this.onResetForm();
      },err=>{
         if(err.status ==400){
           this._snackBar.open('Error de validaciones','cerrar',{
@@ -127,4 +127,11 @@ export class CrearArtistaComponent implements OnInit {
    }
   }
 
+  onResetForm() {
+    this.artistaForm.reset();
+
+    Object.keys(this.artistaForm.controls).forEach(key => {
+      this.artistaForm.get(key)?.setErrors(null);
+    });
+  }
 }
