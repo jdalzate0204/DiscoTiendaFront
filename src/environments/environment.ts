@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   API: 'http://localhost:8080/DiscoTiendaWar/api',
-  TOKEN:'token'
+  TOKEN:'token',
+  ADMINISTRADOR:'administrador'
 };
 
 /*

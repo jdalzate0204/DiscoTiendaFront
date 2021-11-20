@@ -16,6 +16,7 @@ export class InicioDeSesionComponent implements OnInit {
 
   loginForm!:FormGroup;
   token!:string;
+  idAdmin!:number;
 
   constructor(private administrador:AdministradorService,
     private _snackBar:MatSnackBar,private router:Router) {
@@ -52,7 +53,10 @@ export class InicioDeSesionComponent implements OnInit {
       administrador.usuario=value.usuario;
       this.administrador.postLogin(administrador).subscribe(data=>{
       this.token=data.token;
+      this.idAdmin=data.id;
+      var id=this.idAdmin,toString=id.toString();
       sessionStorage.setItem(environment.TOKEN,this.token);
+      sessionStorage.setItem(environment.ADMINISTRADOR,toString);
       this.router.navigate(["espacioAdministrador"]);
       },err=>{
         if(err.status==401){

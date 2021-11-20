@@ -15,6 +15,10 @@ export class AdministradorService {
   postLogin(administrador :Administrador){
     return this.http.post<Administrador>(this.URL+"/login",administrador);
   }
+
+  deleteCerrarSesion(idAdministrador:number){
+    return this.http.delete(this.URL+"/cerrarSesion/"+idAdministrador);
+  }
 }
 
 
