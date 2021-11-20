@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Album } from 'src/app/_model/Album';
-import { AlbumService } from 'src/app/_service/albumes.service';
+import { VentasService } from 'src/app/_service/ventas.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -10,14 +9,12 @@ import { AlbumService } from 'src/app/_service/albumes.service';
 })
 export class CatalogoComponent implements OnInit {
 
-  //albumes!: Album[];
   catalogo!: Album[]; 
 
-  constructor(private albumService: AlbumService) { }
+  constructor(private ventasService: VentasService) { }
 
   ngOnInit(): void {
-    this.albumService.getListarAlbumes().subscribe( data => {
-      //this.albumes = data;
+    this.ventasService.getCatalogo().subscribe( data => {
       this.catalogo = data;
     });
   }
