@@ -10,16 +10,14 @@ import { AlbumService } from 'src/app/_service/albumes.service';
 })
 export class CatalogoComponent implements OnInit {
 
-  albumes!: Album[];
+  //albumes!: Album[];
   catalogo!: Album[]; 
-  formatoMoneda!: Intl.NumberFormat;
-  dataSource!: MatTableDataSource<Album>;
 
   constructor(private albumService: AlbumService) { }
 
   ngOnInit(): void {
     this.albumService.getListarAlbumes().subscribe( data => {
-      this.albumes = data;
+      //this.albumes = data;
       this.catalogo = data;
     });
   }
