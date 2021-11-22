@@ -32,13 +32,18 @@ export class AppComponent implements DoCheck {
   }
 
   cerrarSesion(){
-    this.idAdmin==sessionStorage.getItem(environment.ADMINISTRADOR);
-    var id=this.idAdmin;
-    var id2:number=+id;
-    this.administrador.deleteCerrarSesion(id2).subscribe(data=>{
-      sessionStorage.removeItem(environment.TOKEN);
-      sessionStorage.removeItem(environment.ADMINISTRADOR);
-      this.router.navigate(["catalogo"]);
-    }); 
+    let idAdministrador = sessionStorage.getItem(environment.ADMINISTRADOR);
+    
+    if(!isNaN(Number(idAdministrador))) {
+      var idAdminNumero = Number(idAdministrador);
+
+      this.administrador.deleteCerrarSesion(idAdminNumero).subscribe(data=>{
+        sessionStorage.removeItem(environment.TOKEN);
+        sessionStorage.removeItem(environment.ADMINISTRADOR);
+        this.router.navigate(["catalogo"]);
+      });
+    } else {
+      console.log("No funcionó");
+    }
   }
 }

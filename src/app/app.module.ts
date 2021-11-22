@@ -20,6 +20,40 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { AdministradorService } from './_service/administrador.service';
+import { ArtistaService } from './_service/artistas.service';
+import { CancionesService } from './_service/canciones.service';
+import { AlbumService } from './_service/albumes.service';
+import { environment } from 'src/environments/environment';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => {
+      let token = sessionStorage.getItem(environment.TOKEN);
+
+      /*for (let i = 0; i < 100; i++) {
+        if (token != "" && token != undefined) {
+          break;
+        }
+        delay(300);
+      }*/
+
+      return token != null ? token : '';
+    },
+    allowedDomains: [
+      'localhost:8080'
+    ],
+    dissallowedRoutes: [
+      environment.API + '/auth/login',
+      environment.API + '/ventas/listarCatalogo'
+    ]
+  }
+}
+
+/*export function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}*/
 
 @NgModule({
   declarations: [
@@ -46,7 +80,14 @@ import { MatTableModule } from '@angular/material/table';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [AdministradorService, AlbumService, ArtistaService, CancionesService]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
