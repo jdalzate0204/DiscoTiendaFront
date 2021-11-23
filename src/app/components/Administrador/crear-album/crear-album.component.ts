@@ -6,7 +6,6 @@ import { ArtistaSelect } from 'src/app/_model/ArtistaSelect';
 import { AlbumService } from 'src/app/_service/albumes.service';
 import { ArtistaService } from 'src/app/_service/artistas.service';
 import { ValidacionComponent } from '../../Principal/validacion/validacion.component';
-import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
   selector: 'app-crear-album',
@@ -18,9 +17,8 @@ export class CrearAlbumComponent implements OnInit {
   selectArtista: ArtistaSelect = {id: 0, nombre: ''};
   artista!: ArtistaSelect[];
   albumForm!: FormGroup;
-  album!: Album[];
-  dataSource = new MatTableDataSource<Album>();
-  displayedColumns!: string[];
+  album: Album[] = [];
+  albumMostrar: Album[] = [];
 
   constructor(private artistasService: ArtistaService,
     private _snackBar: MatSnackBar,
@@ -46,12 +44,8 @@ export class CrearAlbumComponent implements OnInit {
 
     this.albumService.getListarAlbumes().subscribe( data => {
       this.album = data;
-      if (this.album != undefined) {
-        this.dataSource = new MatTableDataSource(this.album);
-      }
+      this.albumMostrar = data;
     });
-
-    this.displayedColumns = ['Nombre', 'Artista', 'Imagen', 'Descripcion', 'FechaLanzamiento', 'Precio'];
   }
 
   mensajeError() {
@@ -129,5 +123,12 @@ export class CrearAlbumComponent implements OnInit {
     Object.keys(this.albumForm.controls).forEach(key => {
       this.albumForm.get(key)?.setErrors(null);
     });
+  }
+
+  filtrar(event: Event) {
+    let elemento: HTMLInputElement = event.target as HTMLInputElement;
+    this.albumMostrar = this.album.filter(a => a.nombre.toLowerCase().includes(elemento.value.toLowerCase())
+    || a.artista.toLowerCase().includes(elemento.value.toLowerCase())
+    || a.precio.toPrecision().includes(elemento.value));
   }
 }

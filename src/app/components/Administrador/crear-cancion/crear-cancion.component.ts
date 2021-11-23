@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
 import { AlbumSelect } from 'src/app/_model/AlbumSelect';
 import { Cancion } from 'src/app/_model/Cancion';
 import { Formato } from 'src/app/_model/Formato';
@@ -21,9 +20,8 @@ export class CrearCancionComponent implements OnInit {
   selectAlbum: AlbumSelect = {id: 0, nombre: ''};
   albumSelect!: AlbumSelect[];
   cancionForm!: FormGroup;
-  cancion!: Cancion[];
-  dataSource = new MatTableDataSource<Cancion>();
-  displayedColumns!: string[];
+  cancion: Cancion[] = [];
+  cancionMostrar: Cancion[] = [];
 
   constructor(private cancionService: CancionesService,
     private albumService: AlbumService,
@@ -54,12 +52,8 @@ export class CrearCancionComponent implements OnInit {
 
     this.cancionService.getListarCanciones().subscribe( data => {
       this.cancion = data;
-      if (this.cancion != undefined) {
-        this.dataSource = new MatTableDataSource(this.cancion);
-      }
+      this.cancionMostrar = data;
     });
-
-    this.displayedColumns = ['Nombre', 'Album', 'Descripción', 'Duración', 'Colaboraciones', 'Precio', 'Formato']
   }
 
   mensajeError() {
@@ -137,5 +131,13 @@ export class CrearCancionComponent implements OnInit {
     Object.keys(this.cancionForm.controls).forEach(key => {
       this.cancionForm.get(key)?.setErrors(null);
     });
+  }
+
+  filtrar(event: Event) {
+    let elemento: HTMLInputElement = event.target as HTMLInputElement;
+    this.cancionMostrar = this.cancion.filter(c => c.nombre.toLowerCase().includes(elemento.value.toLowerCase())
+    || c.album.toLowerCase().includes(elemento.value.toLowerCase())
+    || c.formato.toLowerCase().includes(elemento.value.toLowerCase())
+    || c.precio.toPrecision().includes(elemento.value));
   }
 }

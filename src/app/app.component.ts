@@ -38,10 +38,11 @@ export class AppComponent implements DoCheck {
       var idAdminNumero = Number(idAdministrador);
 
       this.administrador.deleteCerrarSesion(idAdminNumero).subscribe(data=>{
-        sessionStorage.removeItem(environment.TOKEN);
-        sessionStorage.removeItem(environment.ADMINISTRADOR);
         this.router.navigate(["catalogo"]);
       });
+
+      sessionStorage.removeItem(environment.TOKEN);
+      sessionStorage.removeItem(environment.ADMINISTRADOR);
     } else {
       console.log("No funcionó");
     }

@@ -75,16 +75,8 @@
         <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form-1" style="padding: 10px;">
           <div class="u-form-group u-form-name">
             <label for="name-1c04" class="u-custom-font u-form-control-hidden u-heading-font u-label"></label>
-            <input type="text" placeholder="Buscar" id="name-1c04" name="inputBuscar" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" maxlength="50">
+            <input (input)="filtrar($event)" type="text" placeholder="Buscar por nombre, album, formato o precio" id="name-1c04" name="inputBuscar" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" maxlength="50">
           </div>
-          <div class="u-align-left u-form-group u-form-submit">
-            <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-dark-1 u-radius-25 u-btn-1">Buscar<br>
-            </a>
-            <input type="submit" value="submit" class="u-form-control-hidden">
-          </div>
-          <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
-          <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor, corrija los errores y vuelva a intentarlo. </div>
-          <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
     </div>
@@ -92,44 +84,48 @@
   <section class="u-align-center u-clearfix u-palette-1-light-1 u-section-6" id="sec-ec5e">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
-        <table mat-table [dataSource]="dataSource" style="text-align: center;">
-          <ng-container matColumnDef="Nombre">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-          </ng-container>
-          
-          <ng-container matColumnDef="Album">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Album </th>
-            <td mat-cell *matCellDef="let element"> {{element.album}} </td>
-          </ng-container>
-        
-          <ng-container matColumnDef="Descripción">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Descripción </th>
-            <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
-          </ng-container>
-        
-          <ng-container matColumnDef="Duración">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Duración </th>
-            <td mat-cell *matCellDef="let element"> {{element.duracion}} </td>
-          </ng-container>
-        
-          <ng-container matColumnDef="Colaboraciones">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Colaboraciones </th>
-            <td mat-cell *matCellDef="let element"> {{element.colaboraciones}} </td>
-          </ng-container>
-        
-          <ng-container matColumnDef="Precio">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Precio </th>
-            <td mat-cell *matCellDef="let element"> ${{element.precio}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="Formato">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Formato </th>
-            <td mat-cell *matCellDef="let element"> {{element.formato}} </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <table class="u-table-entity u-table-entity-1">
+          <colgroup>
+            <col width="13%">
+            <col width="13%">
+            <col width="36%">
+            <col width="8%">
+            <col width="5%">
+            <col width="10%">
+            <col width="5%">
+            <col width="10%">
+          </colgroup>
+          <thead class="u-align-center u-custom-font u-heading-font u-palette-5-dark-1 u-table-header u-table-header-1">
+            <tr style="height: 44px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Album</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Descripción</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Duración</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Formato</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Colaboraciones</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Precio</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell"></th>
+            </tr>
+          </thead>
+          <tbody class="u-align-center u-custom-font u-heading-font u-table-body u-white u-table-body-1">
+            <tr *ngFor="let song of cancionMostrar" style="height: 44px;">
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.nombre}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.album}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.descripcion}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.duracion}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.formato}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.colaboraciones}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">${{song.precio}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
+                <span class="u-icon u-icon-1">
+                  <img style="position: relative; top: 2px; left: 2px;" width="37px" src="assets/images/Editar.png">
+                </span>
+                <!--<span *ngIf="areaInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="editarArea(areaInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/images/Ok.png">
+                </span>-->
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

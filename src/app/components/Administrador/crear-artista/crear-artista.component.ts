@@ -6,7 +6,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ValidacionComponent } from '../../Principal/validacion/validacion.component';
 import { Artista } from 'src/app/_model/Artista';
-import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
   selector: 'app-crear-artista',
@@ -20,11 +19,8 @@ export class CrearArtistaComponent implements OnInit {
  selectGenero: GeneroMusical={id:0,descripcion: ''};
  generoMusical!:Sexo[];
  artistaForm!:FormGroup;
- artista!:Artista[];
- dataSource=new MatTableDataSource<Artista>();
- displayedColumns!: string[];
-
-
+ artista:Artista[] = [];
+ artistaMostrar: Artista[] = [];
 
   constructor(private artistasService:ArtistaService,
     private _snackBar:MatSnackBar,
@@ -34,9 +30,7 @@ export class CrearArtistaComponent implements OnInit {
   }
 
   createFormGroup() {
-
     return new FormGroup({
-
       nombre: new FormControl('', [Validators.required]),
       fechaNacimiento: new FormControl('', [Validators.required]),
       sexo: new FormControl('', [Validators.required]),
@@ -53,15 +47,9 @@ export class CrearArtistaComponent implements OnInit {
       this.sexo=data;
     });
     this.artistaService.getListarArtista().subscribe(data =>{
-      this.artista=data
-      if(this.artista!=undefined){
-        this.dataSource=new MatTableDataSource(this.artista);
-      }
+      this.artista = data
+      this.artistaMostrar = data;
     });
-
-    this.displayedColumns=['Nombre','Fecha Nacimiento','Nacionalidad','Sexo','Genero Musical'];
-
-
   }
 
   mensajeError(){
@@ -116,13 +104,9 @@ export class CrearArtistaComponent implements OnInit {
 
    }else{
     let error =this.mensajeError();
-
     this._snackBar.openFromComponent(ValidacionComponent, {
-
       data: error,
-
       duration: 5000
-
     });
    }
   }
@@ -133,5 +117,13 @@ export class CrearArtistaComponent implements OnInit {
     Object.keys(this.artistaForm.controls).forEach(key => {
       this.artistaForm.get(key)?.setErrors(null);
     });
+  }
+
+  filtrar(event: Event) {
+    let elemento: HTMLInputElement = event.target as HTMLInputElement;
+    this.artistaMostrar = this.artista.filter(a => a.nombre.toLowerCase().includes(elemento.value.toLowerCase())
+    || a.sexo.toLowerCase().includes(elemento.value.toLowerCase())
+    || a.nacionalidad.toLowerCase().includes(elemento.value.toLowerCase())
+    || a.generoMusical.toLowerCase().includes(elemento.value.toLowerCase()));
   }
 }
