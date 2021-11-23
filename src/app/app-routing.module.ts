@@ -5,6 +5,7 @@ import { CrearArtistaComponent } from './components/Administrador/crear-artista/
 import { CrearCancionComponent } from './components/Administrador/crear-cancion/crear-cancion.component';
 import { EspacioAdministradorComponent } from './components/Administrador/espacio-administrador/espacio-administrador.component';
 import { HistorialVentasComponent } from './components/Administrador/historial-ventas/historial-ventas.component';
+import { SeguimientoComponent } from './components/Administrador/seguimiento/seguimiento.component';
 import { InicioDeSesionComponent } from './components/Principal/inicio-de-sesion/inicio-de-sesion.component';
 import { CancionesComponent } from './components/Tienda/catalogo/canciones/canciones.component';
 import { CatalogoComponent } from './components/Tienda/catalogo/catalogo.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'albumes', component: CrearAlbumComponent},
   {path: 'canciones', component: CrearCancionComponent},
   {path: 'ventas', component: HistorialVentasComponent},
+  {path: 'seguimiento', component: SeguimientoComponent},
   {path: 'pago', component: PagoComponent},
 ];
 

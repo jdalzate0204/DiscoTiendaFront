@@ -1,0 +1,109 @@
+<section class="u-clearfix u-palette-1-light-1 u-section-1" id="sec-be6c">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <img class="u-image u-image-default u-image-1" src="assets/images/PortadaSeguimiento.png" alt="" data-image-width="1600" data-image-height="183">
+    </div>
+  </section>
+  <section class="u-clearfix u-palette-1-light-3 u-section-2" id="sec-16a6">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h2 class="u-align-center u-text u-text-1">Seguimiento Artistas</h2>
+      <a href="/espacioAdministrador" data-page-id="20140730" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-1-dark-1 u-radius-50 u-btn-1"><span class="u-icon u-text-white u-icon-1"><svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><polygon points="256,152.96 79.894,288.469 79.894,470.018 221.401,470.018 221.401,336.973 296.576,336.973 296.576,470.018 432.107,470.018 432.107,288.469"></polygon><polygon points="439.482,183.132 439.482,90.307 365.316,90.307 365.316,126.077 256,41.982 0,238.919 35.339,284.855 256,115.062 476.662,284.856 512,238.92"></polygon></svg><img></span>&nbsp;
+      </a>
+    </div>
+  </section>
+  <section class="u-clearfix u-palette-1-light-1 u-section-3" id="sec-ec8d">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <div class="u-form u-form-1">
+        <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form-1" style="padding: 10px;">
+          <div class="u-form-group u-form-name">
+            <label for="name-1c04" class="u-custom-font u-form-control-hidden u-heading-font u-label"></label>
+            <input (input)="filtrarArtista($event)" type="text" placeholder="Buscar por artista" id="name-1c04" name="inputBuscar" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" maxlength="50">
+          </div>
+          <div class="u-align-left u-form-group u-form-submit">
+            <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-dark-1 u-radius-25 u-btn-1">Buscar<br>
+            </a>
+            <input type="submit" value="submit" class="u-form-control-hidden">
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="u-align-center u-clearfix u-palette-1-light-1 u-section-4" id="sec-ec5e">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <div class="u-expanded-width u-table u-table-responsive u-table-1">
+        <table class="u-table-entity u-table-entity-1">
+          <colgroup>
+            <col width="20%">
+            <col width="20%">
+            <col width="18.8%">
+            <col width="21.2%">
+            <col width="20%">
+          </colgroup>
+          <thead class="u-align-center u-custom-font u-heading-font u-palette-5-dark-1 u-table-header u-table-header-1">
+            <tr style="height: 44px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre Artista</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell"> Nacionalidad</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Sexo</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Genero Musical</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Cantidad Albumes</th>
+            </tr>
+          </thead>
+          <tbody class="u-align-center u-custom-font u-heading-font u-table-body u-white u-table-body-1">
+            <tr *ngFor="let vistaArtista of vistaArMostrar" style="height: 44px;">
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaArtista.nombre}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaArtista.nacionalidad}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaArtista.sexo}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaArtista.generoMusical}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaArtista.cantidadAlbumes}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <section class="u-clearfix u-palette-1-light-3 u-section-5" id="sec-0083">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <h2 class="u-align-center u-text u-text-1">Seguimiento Albumes</h2>
+    </div>
+  </section>
+  <section class="u-clearfix u-palette-1-light-1 u-section-6" id="sec-3a2c">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <div class="u-form u-form-1">
+        <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form-1" style="padding: 10px;">
+          <div class="u-form-group u-form-name">
+            <label for="name-1c04" class="u-custom-font u-form-control-hidden u-heading-font u-label"></label>
+            <input (input)="filtrarAlbum($event)" type="text" placeholder="Buscar" id="name-1c04" name="inputBuscar" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" maxlength="50">
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="u-align-center u-clearfix u-palette-1-light-1 u-section-7" id="sec-a9fc">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <div class="u-expanded-width u-table u-table-responsive u-table-1">
+        <table class="u-table-entity u-table-entity-1">
+          <colgroup>
+            <col width="25.4%">
+            <col width="25.4%">
+            <col width="23.9%">
+            <col width="25.300000000000004%">
+          </colgroup>
+          <thead class="u-align-center u-custom-font u-heading-font u-palette-5-dark-1 u-table-header u-table-header-1">
+            <tr style="height: 44px;">
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre Album</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Artista</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Fecha Lanzamiento</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Cantidad Canciones</th>
+            </tr>
+          </thead>
+          <tbody class="u-align-center u-custom-font u-heading-font u-table-body u-white u-table-body-1">
+            <tr *ngFor="let vistaAlbum of vistaAlMostrar" style="height: 44px;">
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaAlbum.nombre}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaAlbum.artista}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaAlbum.fechaLanzamiento | date: 'dd/MM/yyyy'}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{vistaAlbum.cantidadCanciones}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>

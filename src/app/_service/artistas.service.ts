@@ -5,6 +5,7 @@ import { Artista } from '../_model/Artista';
 import { GeneroMusical } from '../_model/GeneroMusical';
 import { Sexo } from '../_model/Sexo';
 import { ArtistaSelect } from '../_model/ArtistaSelect';
+import { VistaArtista } from '../_model/VistaArtista';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class ArtistaService {
 
   getListarArtista(){
     return this.http.get<Artista[]>(this.URL+"/listar");
+  }
+
+  getVistaArtista() {
+    return this.http.get<VistaArtista[]>(this.URL + "/vista");
   }
 }
 
