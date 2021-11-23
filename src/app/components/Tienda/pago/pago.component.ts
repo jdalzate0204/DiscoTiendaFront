@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Pago } from 'src/app/_model/Pago';
+import { VentasService } from 'src/app/_service/ventas.service';
 
 @Component({
   selector: 'app-pago',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagoComponent implements OnInit {
 
-  constructor() { }
+  selectPago: Pago = {id: 0, descripcion: ''};
+  pago!: Pago[];
+
+  constructor(private ventaService: VentasService) { }
 
   ngOnInit(): void {
+    this.ventaService.getSelectPago().subscribe( data => {
+      this.pago = data;
+    });
   }
 
 }

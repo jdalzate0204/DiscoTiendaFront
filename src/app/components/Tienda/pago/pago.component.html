@@ -58,7 +58,7 @@
                     <div class="u-form-group u-form-select u-form-group-7">
                       <label for="select-5637" class="u-form-control-hidden u-label"></label>
                       <div class="u-form-select-wrapper">
-                        <select id="select-5637" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                        <!--<select id="select-5637" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                           <option value="Seleccionar">Seleccionar</option>
                           <option value="MetodoDePago1">MetodoDePago1</option>
                           <option value="MetodoDePago2">MetodoDePago2</option>
@@ -67,7 +67,14 @@
                           <option value="MetodoDePago5">MetodoDePago5</option>
                           <option value="MetodoDePago6">MetodoDePago6</option>
                         </select>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>-->
+                        <mat-form-field appearance="fill" style="position: relative; top: 22px; width: 100%;">
+                          <mat-label>Metodo de Pago</mat-label>
+                          <mat-select matSelect (ngModelChange)="selectPago.id" required>
+                            <mat-option>--</mat-option>  
+                            <mat-option *ngFor="let b of pago" value ={{b.id}}>{{b.descripcion}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
                       </div>
                     </div>
                     <div class="u-align-left u-form-group u-form-submit">

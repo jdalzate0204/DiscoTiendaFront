@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Album } from '../_model/Album';
+import { Pago } from '../_model/Pago';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class VentasService {
 
   getCatalogo(){
     return this.http.get<Album[]>(this.URL + "/listarCatalogo");
+  }
+
+  getSelectPago() {
+    return this.http.get<Pago[]>(this.URL + '/listarPago');
   }
 }
