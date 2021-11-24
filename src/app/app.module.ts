@@ -29,6 +29,7 @@ import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CancionesComponent } from './components/Tienda/catalogo/canciones/canciones.component';
 import { FacturaComponent } from './components/Tienda/factura/factura.component';
 import { SeguimientoComponent } from './components/Administrador/seguimiento/seguimiento.component';
+import { CarritoComponent } from './components/Tienda/carrito/carrito.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -72,7 +73,8 @@ export function jwtOptionsFactory() {
     ValidacionComponent,
     CancionesComponent,
     FacturaComponent,
-    SeguimientoComponent
+    SeguimientoComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { EspacioAdministradorComponent } from './components/Administrador/espaci
 import { HistorialVentasComponent } from './components/Administrador/historial-ventas/historial-ventas.component';
 import { SeguimientoComponent } from './components/Administrador/seguimiento/seguimiento.component';
 import { InicioDeSesionComponent } from './components/Principal/inicio-de-sesion/inicio-de-sesion.component';
+import { CarritoComponent } from './components/Tienda/carrito/carrito.component';
 import { CancionesComponent } from './components/Tienda/catalogo/canciones/canciones.component';
 import { CatalogoComponent } from './components/Tienda/catalogo/catalogo.component';
 import { FacturaComponent } from './components/Tienda/factura/factura.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'ventas', component: HistorialVentasComponent},
   {path: 'seguimiento', component: SeguimientoComponent},
   {path: 'pago', component: PagoComponent},
+  {path: 'carrito', component: CarritoComponent}
 ];
 
 @NgModule({
