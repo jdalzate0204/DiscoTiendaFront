@@ -36,5 +36,9 @@ export class CancionesService {
   getCanciones(idAlbum: number) {
     return this.http.get<Cancion[]>(this.URL + '/listarPorIdAlbum/' + idAlbum);
   }
+  
+  getListarId(id:number){
+    return this.http.get<Cancion[]>(this.URL+'/listarPorId/'+id);
+  }
 
 }

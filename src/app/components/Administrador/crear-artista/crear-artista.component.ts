@@ -23,6 +23,7 @@ export class CrearArtistaComponent implements OnInit {
  artistaMostrar: Artista[] = [];
  artistaInterfaz:ArtistaInterfaz[]=[];
  artistaInterfazFiltrados:ArtistaInterfaz[]=[];
+ artistaEditar:Artista=new Artista();
 
   constructor(private artistasService:ArtistaService,
     private _snackBar:MatSnackBar,
@@ -48,11 +49,8 @@ export class CrearArtistaComponent implements OnInit {
     this.artistasService.getlistarSexo().subscribe(data =>{
       this.sexo=data;
     });
-    this.artistaService.getListarArtista().subscribe(data =>{
-     data.forEach(Element=>{
-       let artistaInterfaz:ArtistaInterfaz=new ArtistaInterfaz();
-     })
-    });
+    this.actualizarArtista();
+    
   }
 
   mensajeError(){
@@ -124,10 +122,47 @@ export class CrearArtistaComponent implements OnInit {
 
   filtrar(event: Event) {
     let elemento: HTMLInputElement = event.target as HTMLInputElement;
-    this.artistaMostrar = this.artista.filter(a => a.nombre.toLowerCase().includes(elemento.value.toLowerCase())
+    this.artistaInterfazFiltrados = this.artistaInterfaz.filter(a => a.nombre.toLowerCase().includes(elemento.value.toLowerCase())
     || a.sexo.toLowerCase().includes(elemento.value.toLowerCase())
     || a.nacionalidad.toLowerCase().includes(elemento.value.toLowerCase())
     || a.generoMusical.toLowerCase().includes(elemento.value.toLowerCase()));
+  }
+
+  hacerArtistaEditable(artistaInterfaz:ArtistaInterfaz){
+    artistaInterfaz.editable=true;
+  }
+
+  editarArtista(artistaInterfaz:ArtistaInterfaz){
+   this.artistaService.getListarId(artistaInterfaz.id).subscribe(data=>{
+     
+    this.artistaEditar.id=artistaInterfaz.id;
+    this.artistaEditar.fechaNacimiento=artistaInterfaz.fechaNacimiento;
+    this.artistaEditar.nacionalidad=artistaInterfaz.nacionalidad;
+    this.artistaEditar.nombre=artistaInterfaz.nombre;
+   
+    this.artistaService.putArtista(this.artistaEditar).subscribe(data=>{
+      this._snackBar.open("Artista editado con éxito", "close", { duration: 3000 });
+        this.actualizarArtista();
+
+    })
+   })
+  }
+
+  actualizarArtista(){
+    this.artistaInterfaz=[];
+    this.artistaService.getListarArtista().subscribe(data =>{
+      data.forEach(element=>{
+        let artistaInterfaz:ArtistaInterfaz=new ArtistaInterfaz();
+        artistaInterfaz.id=element.id;
+        artistaInterfaz.nombre=element.nombre;
+        artistaInterfaz.nacionalidad=element.nacionalidad;
+        artistaInterfaz.fechaNacimiento=element.fechaNacimiento;
+        artistaInterfaz.sexo=element.sexo;
+        artistaInterfaz.generoMusical=element.generoMusical;
+        this.artistaInterfaz.push(artistaInterfaz);
+      })
+      this.artistaInterfazFiltrados=this.artistaInterfaz.filter(artista=>artista.nombre.toLocaleLowerCase().includes(""))
+     });
   }
 }
 
@@ -137,4 +172,7 @@ class ArtistaInterfaz{
   nombre!: string;
   fechaNacimiento!: string;
   nacionalidad!: string;
+  editable!:boolean;
+  sexo!:string;
+  generoMusical!:string;
 }

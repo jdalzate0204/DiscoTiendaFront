@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,6 +23,9 @@ export class CrearCancionComponent implements OnInit {
   cancionForm!: FormGroup;
   cancion: Cancion[] = [];
   cancionMostrar: Cancion[] = [];
+  cancionInterfaz:CancionInterfaz[]=[];
+  cancionInterfazFiltrada:CancionInterfaz[]=[];
+  cancionEditar:Cancion=new Cancion();
 
   constructor(private cancionService: CancionesService,
     private albumService: AlbumService,
@@ -50,10 +54,8 @@ export class CrearCancionComponent implements OnInit {
       this.albumSelect = data;
     });
 
-    this.cancionService.getListarCanciones().subscribe( data => {
-      this.cancion = data;
-      this.cancionMostrar = data;
-    });
+    this.actualizarCancion();
+    
   }
 
   mensajeError() {
@@ -134,10 +136,61 @@ export class CrearCancionComponent implements OnInit {
   }
 
   filtrar(event: Event) {
-    let elemento: HTMLInputElement = event.target as HTMLInputElement;
-    this.cancionMostrar = this.cancion.filter(c => c.nombre.toLowerCase().includes(elemento.value.toLowerCase())
+   let elemento: HTMLInputElement = event.target as HTMLInputElement;
+    this.cancionInterfazFiltrada = this.cancionInterfaz.filter(c => c.nombre.toLowerCase().includes(elemento.value.toLowerCase())
     || c.album.toLowerCase().includes(elemento.value.toLowerCase())
     || c.formato.toLowerCase().includes(elemento.value.toLowerCase())
     || c.precio.toPrecision().includes(elemento.value));
   }
+
+  hacerCancionEditable(cancionInterfaz:CancionInterfaz){
+   cancionInterfaz.editable=true;
+  }
+
+  editarCancion(cancionInterfaz:CancionInterfaz){
+   this.cancionService.getListarId(cancionInterfaz.id).subscribe(data=>{
+
+    this.cancionEditar.id=cancionInterfaz.id;
+    this.cancionEditar.nombre=cancionInterfaz.nombre;
+    this.cancionEditar.descripcion=cancionInterfaz.descripcion;
+    this.cancionEditar.duracion=cancionInterfaz.duracion;
+    this.cancionEditar.colaboraciones=cancionInterfaz.colaboraciones;
+    this.cancionEditar.precio=cancionInterfaz.precio;
+
+    this.cancionService.putCancion(this.cancionEditar).subscribe(data=>{
+      this._snackBar.open("Cancion editada con éxito", "close", { duration: 3000 });
+       this.actualizarCancion();
+    })
+   })
+  }
+
+  actualizarCancion(){
+   this.cancionInterfaz=[];
+   this.cancionService.getListarCanciones().subscribe( data => {
+    data.forEach(element=>{
+      let cancionInterfaz:CancionInterfaz=new CancionInterfaz();
+      cancionInterfaz.id=element.id;
+      cancionInterfaz.nombre=element.nombre;
+      cancionInterfaz.colaboraciones=element.colaboraciones;
+      cancionInterfaz.descripcion=element.descripcion;
+      cancionInterfaz.duracion=element.duracion;
+      cancionInterfaz.precio=element.precio;
+      cancionInterfaz.album=element.album;
+      cancionInterfaz.formato=element.formato;
+      this.cancionInterfaz.push(cancionInterfaz);
+    })
+    this.cancionInterfazFiltrada=this.cancionInterfaz.filter(cancion=>cancion.nombre.toLocaleLowerCase().includes(""))
+  });
+  }
+}
+class CancionInterfaz{
+  id!: number;
+  nombre!: string;
+  descripcion!: string;
+  duracion!: string;
+  colaboraciones!: string;
+  precio!: number;
+  album!: string;
+  formato!: string;
+  editable!:boolean;
 }

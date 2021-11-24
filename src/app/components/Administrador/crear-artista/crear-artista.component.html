@@ -104,19 +104,22 @@
             </tr>
           </thead>
           <tbody class="u-align-center u-custom-font u-heading-font u-table-body u-white u-table-body-1">
-            <tr *ngFor="let artist of artistaMostrar" style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artist.nombre}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artist.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artist.sexo}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artist.nacionalidad}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artist.generoMusical}}</td>
+            <tr *ngFor="let artistaInterfaz of artistaInterfazFiltrados" style="height: 44px;">
+              <td *ngIf="!artistaInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artistaInterfaz.nombre}}</td>
+              <td *ngIf="artistaInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="artistaInterfaz.nombre" type="text" value="{{artistaInterfaz.nombre}}"></td>
+              <td *ngIf="!artistaInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artistaInterfaz.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
+              <td *ngIf="artistaInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="artistaInterfaz.fechaNacimiento" type="text" value="{{artistaInterfaz.fechaNacimiento}}"></td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artistaInterfaz.sexo}}</td>
+              <td *ngIf="!artistaInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artistaInterfaz.nacionalidad}}</td>
+              <td *ngIf="artistaInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="artistaInterfaz.nacionalidad" type="text" value="{{artistaInterfaz.nacionalidad}}"></td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{artistaInterfaz.generoMusical}}</td>
               <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span class="u-icon u-icon-1">
-                  <img style="position: relative; top: 2px; left: 2px;" width="37px" src="assets/images/Editar.png">
+                <span *ngIf="!artistaInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="hacerArtistaEditable(artistaInterfaz)" style="position: relative; top: 2px; left: 2px;" width="37px" src="assets/images/Editar.png">
                 </span>
-                <!--<span *ngIf="areaInterfaz.editable" class="u-icon u-icon-1">
-                  <img (click)="editarArea(areaInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/images/Ok.png">
-                </span>-->
+                <span *ngIf="artistaInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="editarArtista(artistaInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/images/Ok.png">
+                </span>
               </td>
             </tr>
           </tbody>
