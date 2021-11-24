@@ -25,8 +25,7 @@ export class CrearAlbumComponent implements OnInit {
 
   constructor(private artistasService: ArtistaService,
     private _snackBar: MatSnackBar,
-    private albumService: AlbumService,
-    private snackBar: MatSnackBar) { 
+    private albumService: AlbumService) { 
     this.albumForm! = this.createFormGroup();
   }
 
@@ -127,10 +126,10 @@ export class CrearAlbumComponent implements OnInit {
   }
 
   filtrar(event: Event) {
-   /* let elemento: HTMLInputElement = event.target as HTMLInputElement;
-    this.albumMostrar = this.album.filter(a => a.nombre.toLowerCase().includes(elemento.value.toLowerCase())
+    let elemento: HTMLInputElement = event.target as HTMLInputElement;
+    this.albumInterfazFiltrados = this.albumInterfaz.filter(a => a.nombre.toLowerCase().includes(elemento.value.toLowerCase())
     || a.artista.toLowerCase().includes(elemento.value.toLowerCase())
-    || a.precio.toPrecision().includes(elemento.value));*/
+    || a.precio.toPrecision().includes(elemento.value));
   }
 
   hacerAlbumEditable(albumInterfaz:AlbumInterfaz){
@@ -138,18 +137,8 @@ export class CrearAlbumComponent implements OnInit {
   }
 
   editarAlbum(albumInterfaz:AlbumInterfaz){
-    console.log(albumInterfaz.id);
     this.albumService.getListarId(albumInterfaz.id).subscribe(data=>{
-
-      /*data.forEach(element=>{
-        
-        this.albumEditar.id=element.id;
-        this.albumEditar.nombre=element.nombre;
-        this.albumEditar.imagen=element.imagen;
-        this.albumEditar.descripcion=element.descripcion;
-        this.albumEditar.fechaLanzamiento=element.fechaLanzamiento;
-        this.albumEditar.precio=element.precio;
-      });*/
+      
       this.albumEditar.id=albumInterfaz.id;
       this.albumEditar.nombre=albumInterfaz.nombre;
       this.albumEditar.imagen=albumInterfaz.imagen;
@@ -160,7 +149,7 @@ export class CrearAlbumComponent implements OnInit {
       
       this.albumService.putAlbumes(this.albumEditar).subscribe(data => {
 
-        this.snackBar.open("Álbum editada con éxito", "close", { duration: 3000 });
+        this._snackBar.open("Álbum editada con éxito", "close", { duration: 3000 });
         this.actualizarAlbum();
 
       })

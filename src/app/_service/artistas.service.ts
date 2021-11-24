@@ -39,9 +39,13 @@ export class ArtistaService {
   putArtista(artista:Artista){
     return this.http.put(this.URL+'/editar',artista); 
   }
-  
+
   getVistaArtista() {
     return this.http.get<VistaArtista[]>(this.URL + "/vista");
+  }
+
+  getListarId(id:number){
+    return this.http.get<Artista[]>(this.URL+'/listarPorId/'+id);
   }
 }
 

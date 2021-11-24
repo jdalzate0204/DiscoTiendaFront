@@ -108,21 +108,26 @@
             </tr>
           </thead>
           <tbody class="u-align-center u-custom-font u-heading-font u-table-body u-white u-table-body-1">
-            <tr *ngFor="let song of cancionMostrar" style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.nombre}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.album}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.descripcion}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.duracion}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.formato}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{song.colaboraciones}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">${{song.precio}}</td>
+            <tr *ngFor="let cancionInterfaz of cancionInterfazFiltrada" style="height: 44px;">
+              <td *ngIf="!cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancionInterfaz.nombre}}</td>
+              <td *ngIf="cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="cancionInterfaz.nombre" type="text" value="{{cancionInterfaz.nombre}}"></td>
+              <td  class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancionInterfaz.album}}</td>
+              <td *ngIf="!cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancionInterfaz.descripcion}}</td>
+              <td *ngIf="cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="cancionInterfaz.descripcion" type="text" value="{{cancionInterfaz.descripcion}}"></td>
+              <td *ngIf="!cancionInterfaz.editable"  class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancionInterfaz.duracion}}</td>
+              <td *ngIf="cancionInterfaz.editable"  class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="cancionInterfaz.duracion" type="text" value="{{cancionInterfaz.duracion}}"></td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancionInterfaz.formato}}</td>
+              <td *ngIf="!cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancionInterfaz.colaboraciones}}</td>
+              <td *ngIf="cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="cancionInterfaz.colaboraciones"type="text" value="{{cancionInterfaz.colaboraciones}}"></td>
+              <td  *ngIf="!cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">${{cancionInterfaz.precio}}</td>
+              <td *ngIf="cancionInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="cancionInterfaz.precio"type="text" value="{{cancionInterfaz.precio}}"></td>
               <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span class="u-icon u-icon-1">
-                  <img style="position: relative; top: 2px; left: 2px;" width="37px" src="assets/images/Editar.png">
+                <span *ngIf="!cancionInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="hacerCancionEditable(cancionInterfaz)" style="position: relative; top: 2px; left: 2px;" width="37px" src="assets/images/Editar.png">
                 </span>
-                <!--<span *ngIf="areaInterfaz.editable" class="u-icon u-icon-1">
-                  <img (click)="editarArea(areaInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/images/Ok.png">
-                </span>-->
+                <span *ngIf="cancionInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="editarCancion(cancionInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/images/Ok.png">
+                </span>
               </td>
             </tr>
           </tbody>

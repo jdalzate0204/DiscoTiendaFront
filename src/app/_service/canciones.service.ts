@@ -33,4 +33,8 @@ export class CancionesService {
     return this.http.put(this.URL+'/editar',cancion); 
   }
 
+  getListarId(id:number){
+    return this.http.get<Cancion[]>(this.URL+'/listarPorId/'+id);
+  }
+
 }
