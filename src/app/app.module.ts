@@ -28,6 +28,7 @@ import { environment } from 'src/environments/environment';
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CancionesComponent } from './components/Tienda/catalogo/canciones/canciones.component';
 import { FacturaComponent } from './components/Tienda/factura/factura.component';
+import { SeguimientoComponent } from './components/Administrador/seguimiento/seguimiento.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -70,7 +71,8 @@ export function jwtOptionsFactory() {
     CatalogoComponent,
     ValidacionComponent,
     CancionesComponent,
-    FacturaComponent
+    FacturaComponent,
+    SeguimientoComponent
   ],
   imports: [
     BrowserModule,
