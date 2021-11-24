@@ -33,4 +33,8 @@ export class CancionesService {
     return this.http.put(this.URL+'/editar',cancion); 
   }
 
+  getCanciones(idAlbum: number) {
+    return this.http.get<Cancion[]>(this.URL + '/listarPorIdAlbum/' + idAlbum);
+  }
+
 }

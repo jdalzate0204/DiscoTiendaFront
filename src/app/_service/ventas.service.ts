@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Album } from '../_model/Album';
+import { Cancion } from '../_model/Cancion';
 import { Pago } from '../_model/Pago';
 
 @Injectable({

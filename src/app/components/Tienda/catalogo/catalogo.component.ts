@@ -17,6 +17,7 @@ export class CatalogoComponent implements OnInit {
     this.ventasService.getCatalogo().subscribe( data => {
       this.catalogo = data;
     });
+    
   }
 
 }

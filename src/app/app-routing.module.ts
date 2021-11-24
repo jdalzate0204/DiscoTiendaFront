@@ -15,7 +15,7 @@ import { PagoComponent } from './components/Tienda/pago/pago.component';
 const routes: Routes = [
   {path: '', component: CatalogoComponent},
   {path: 'catalogo', component: CatalogoComponent},
-  {path: 'catalogo/canciones', component: CancionesComponent},
+  {path: 'catalogo/canciones/:id', component: CancionesComponent},
   {path: 'factura', component: FacturaComponent},
   {path: 'iniciarSesion', component: InicioDeSesionComponent},
   {path: 'espacioAdministrador', component: EspacioAdministradorComponent},

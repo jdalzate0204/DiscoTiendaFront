@@ -20,7 +20,7 @@
               <h4 class="u-align-center u-text u-text-4">{{album.fechaLanzamiento | date: 'dd/MM/yyyy'}}</h4>
               <p class="u-align-justify u-custom-font u-heading-font u-text u-text-5" style="height: 50px;">{{album.descripcion}}</p>
               <h4 class="u-align-center u-text u-text-custom-color-1 u-text-6">$ {{album.precio}}</h4>
-              <a href="catalogo/canciones" class="u-align-center u-btn u-btn-round u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-radius-25 u-btn-1">Ver Canciones</a>
+              <a [routerLink]="['/catalogo/canciones', album.id]" class="u-align-center u-btn u-btn-round u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-radius-25 u-btn-1">Ver Canciones</a>
               <a href="" class="u-align-center u-btn u-btn-round u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-radius-25 u-btn-2">Añadir al Carrito</a>
               <br>
             </div>
