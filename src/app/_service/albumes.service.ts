@@ -24,4 +24,12 @@ export class AlbumService {
   getListarSelect() {
     return this.http.get<AlbumSelect[]>(this.URL + "/listarAlbumes");
   }
+
+  putAlbumes(album:Album){
+    return this.http.put<Album>(this.URL+'/editar',album); 
+  }
+
+  getListarId(id:number){
+    return this.http.get<Album[]>(this.URL+'/listarPorId/'+id)
+  }
 }

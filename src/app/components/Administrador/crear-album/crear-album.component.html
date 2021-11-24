@@ -99,20 +99,25 @@
             </tr>
           </thead>
           <tbody class="u-align-center u-table-body u-white u-table-body-1">
-            <tr *ngFor="let album of albumMostrar" style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{album.nombre}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{album.artista}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{album.imagen}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{album.descripcion}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{album.fechaLanzamiento | date: 'dd/MM/yyyy'}}</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">${{album.precio}}</td>
+            <tr *ngFor="let albumInterfaz of albumInterfazFiltrados" style="height: 44px;">
+              <td  *ngIf="!albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{albumInterfaz.nombre}}</td>
+              <td  *ngIf="albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="albumInterfaz.nombre" type="text" value="{{albumInterfaz.nombre}}"></td>
+              <td  class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{albumInterfaz.artista}}</td>
+              <td  *ngIf="!albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{albumInterfaz.imagen}}</td>
+              <td  *ngIf="albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="albumInterfaz.imagen" type="text" value="{{albumInterfaz.imagen}}"></td>
+              <td  *ngIf="!albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{albumInterfaz.descripcion}}</td>
+              <td  *ngIf="albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="albumInterfaz.descripcion"type="text" value="{{albumInterfaz.descripcion}}"></td>
+              <td  *ngIf="!albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{albumInterfaz.fechaLanzamiento | date: 'dd/MM/yyyy'}}</td>
+              <td  *ngIf="albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="albumInterfaz.fechaLanzamiento"type="text" value="{{albumInterfaz.fechaLanzamiento}}"></td>
+              <td  *ngIf="!albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">${{albumInterfaz.precio}}</td>
+              <td  *ngIf="albumInterfaz.editable" class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell"><input [(ngModel)]="albumInterfaz.precio"type="text" value="{{albumInterfaz.precio}}"></td>
               <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">
-                <span class="u-icon u-icon-1">
-                  <img style="position: relative; top: 2px; left: 2px;" width="37px" src="assets/images/Editar.png">
+                <span *ngIf="!albumInterfaz.editable" class="u-icon u-icon-1">
+                  <img  (click)="hacerAlbumEditable(albumInterfaz)" style="position: relative; top: 2px; left: 2px;" width="37px" src="assets/images/Editar.png">
                 </span>
-                <!--<span *ngIf="areaInterfaz.editable" class="u-icon u-icon-1">
-                  <img (click)="editarArea(areaInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/images/Ok.png">
-                </span>-->
+                <span *ngIf="albumInterfaz.editable" class="u-icon u-icon-1">
+                  <img (click)="editarAlbum(albumInterfaz)" style="position: relative; top: 7px; left: -3px;" width="37px" src="assets/images/Ok.png">
+                </span>
               </td>
             </tr>
           </tbody>

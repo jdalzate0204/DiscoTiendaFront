@@ -18,11 +18,15 @@ export class CrearAlbumComponent implements OnInit {
   artista!: ArtistaSelect[];
   albumForm!: FormGroup;
   album: Album[] = [];
-  albumMostrar: Album[] = [];
+  albumMostrar: AlbumInterfaz[] = [];
+  albumInterfaz:AlbumInterfaz[]=[];
+  albumInterfazFiltrados: AlbumInterfaz[] = [];
+  albumEditar:Album=new Album();
 
   constructor(private artistasService: ArtistaService,
     private _snackBar: MatSnackBar,
-    private albumService: AlbumService) { 
+    private albumService: AlbumService,
+    private snackBar: MatSnackBar) { 
     this.albumForm! = this.createFormGroup();
   }
 
@@ -42,10 +46,7 @@ export class CrearAlbumComponent implements OnInit {
       this.artista = data;
     });  
 
-    this.albumService.getListarAlbumes().subscribe( data => {
-      this.album = data;
-      this.albumMostrar = data;
-    });
+    this.actualizarAlbum();
   }
 
   mensajeError() {
@@ -126,9 +127,79 @@ export class CrearAlbumComponent implements OnInit {
   }
 
   filtrar(event: Event) {
-    let elemento: HTMLInputElement = event.target as HTMLInputElement;
+   /* let elemento: HTMLInputElement = event.target as HTMLInputElement;
     this.albumMostrar = this.album.filter(a => a.nombre.toLowerCase().includes(elemento.value.toLowerCase())
     || a.artista.toLowerCase().includes(elemento.value.toLowerCase())
-    || a.precio.toPrecision().includes(elemento.value));
+    || a.precio.toPrecision().includes(elemento.value));*/
   }
+
+  hacerAlbumEditable(albumInterfaz:AlbumInterfaz){
+    albumInterfaz.editable=true;
+  }
+
+  editarAlbum(albumInterfaz:AlbumInterfaz){
+    console.log(albumInterfaz.id);
+    this.albumService.getListarId(albumInterfaz.id).subscribe(data=>{
+
+      /*data.forEach(element=>{
+        
+        this.albumEditar.id=element.id;
+        this.albumEditar.nombre=element.nombre;
+        this.albumEditar.imagen=element.imagen;
+        this.albumEditar.descripcion=element.descripcion;
+        this.albumEditar.fechaLanzamiento=element.fechaLanzamiento;
+        this.albumEditar.precio=element.precio;
+      });*/
+      this.albumEditar.id=albumInterfaz.id;
+      this.albumEditar.nombre=albumInterfaz.nombre;
+      this.albumEditar.imagen=albumInterfaz.imagen;
+      this.albumEditar.descripcion=albumInterfaz.descripcion;
+      this.albumEditar.fechaLanzamiento=albumInterfaz.fechaLanzamiento;
+      this.albumEditar.precio=albumInterfaz.precio;
+
+      
+      this.albumService.putAlbumes(this.albumEditar).subscribe(data => {
+
+        this.snackBar.open("Álbum editada con éxito", "close", { duration: 3000 });
+        this.actualizarAlbum();
+
+      })
+
+    })
+  }
+
+  actualizarAlbum(){
+ 
+    this.albumInterfaz = [];
+
+    this.albumService.getListarAlbumes().subscribe( data => {
+      data.forEach(element=>{
+        let albumInterfaz:AlbumInterfaz=new AlbumInterfaz();
+        albumInterfaz.id=element.id;
+        albumInterfaz.nombre=element.nombre;
+        albumInterfaz.imagen=element.imagen;
+        albumInterfaz.fechaLanzamiento=element.fechaLanzamiento;
+        albumInterfaz.descripcion=element.descripcion;
+        albumInterfaz.precio=element.precio;
+        albumInterfaz.artista=element.artista;
+        albumInterfaz.editable=false;
+        this.albumInterfaz.push(albumInterfaz);
+      })
+      this.albumInterfazFiltrados=this.albumInterfaz.filter(album=>album.nombre.toLocaleLowerCase().includes(""))
+      
+    });
+  }
+
+}
+
+class AlbumInterfaz{
+
+  id!: number;
+  nombre!: string;
+  imagen!: string;
+  descripcion!: string;
+  fechaLanzamiento!: string;
+  precio!: number;
+  artista!:string;
+  editable!:boolean;
 }

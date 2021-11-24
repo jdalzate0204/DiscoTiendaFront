@@ -21,6 +21,8 @@ export class CrearArtistaComponent implements OnInit {
  artistaForm!:FormGroup;
  artista:Artista[] = [];
  artistaMostrar: Artista[] = [];
+ artistaInterfaz:ArtistaInterfaz[]=[];
+ artistaInterfazFiltrados:ArtistaInterfaz[]=[];
 
   constructor(private artistasService:ArtistaService,
     private _snackBar:MatSnackBar,
@@ -47,8 +49,9 @@ export class CrearArtistaComponent implements OnInit {
       this.sexo=data;
     });
     this.artistaService.getListarArtista().subscribe(data =>{
-      this.artista = data
-      this.artistaMostrar = data;
+     data.forEach(Element=>{
+       let artistaInterfaz:ArtistaInterfaz=new ArtistaInterfaz();
+     })
     });
   }
 
@@ -126,4 +129,12 @@ export class CrearArtistaComponent implements OnInit {
     || a.nacionalidad.toLowerCase().includes(elemento.value.toLowerCase())
     || a.generoMusical.toLowerCase().includes(elemento.value.toLowerCase()));
   }
+}
+
+class ArtistaInterfaz{
+  
+  id!: number;
+  nombre!: string;
+  fechaNacimiento!: string;
+  nacionalidad!: string;
 }

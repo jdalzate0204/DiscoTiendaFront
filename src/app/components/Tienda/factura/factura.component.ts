@@ -13,16 +13,16 @@ export class FacturaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /*export() {
+  export() {
 
-    const options = {
+    /*const options = {
       filename: "FacturaJAALmusic.pdf",
       image: { type: 'jpeg' },
       html2canvas: {scale: 2},
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait'}
     };
     const element = document.getElementById('content');
-    html2pdf().from(element).set(options).save();
+    html2pdf().from(element).set(options).save();*/
 
-  }*/
+  }
 }
