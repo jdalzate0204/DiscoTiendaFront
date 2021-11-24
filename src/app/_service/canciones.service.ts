@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Cancion } from '../_model/Cancion';
+import { CancionSelect } from '../_model/CancionSelect';
 import { Formato } from '../_model/Formato';
 
 @Injectable({
@@ -32,13 +33,17 @@ export class CancionesService {
   putCancion(cancion:Cancion){
     return this.http.put(this.URL+'/editar',cancion); 
   }
-
-  getCanciones(idAlbum: number) {
-    return this.http.get<Cancion[]>(this.URL + '/listarPorIdAlbum/' + idAlbum);
-  }
   
   getListarId(id:number){
     return this.http.get<Cancion[]>(this.URL+'/listarPorId/'+id);
+  }
+
+  getListarCancionId(id:number){
+    return this.http.get<Cancion[]>(this.URL+'/listarPorIdCatalogo/'+id);
+  }
+
+  getSelectCancion(idAlbum: number) {
+    return this.http.get<CancionSelect[]>(this.URL + "/listarCanciones/" + idAlbum);
   }
 
 }
