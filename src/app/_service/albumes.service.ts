@@ -35,6 +35,6 @@ export class AlbumService {
   }
   
   getVistaAlbum() {
-    return this.http.get<VistaAlbum[]>(this.URL + "/vista");
+    return this.http.get<VistaAlbum[]>(this.URL + "/listarVista");
   }
 }

@@ -10,40 +10,40 @@
       <div class="u-align-center u-form u-form-1">
         <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
           <div class="u-form-group u-form-name">
-            <label for="name-aabc" class="u-custom-font u-heading-font u-label">Fecha de compra: </label>
-            <input type="text" placeholder="Fecha de compra" id="name-aabc" name="fecha" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="name-aabc" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Fecha de compra: </label>
+            <input type="text" value="{{this.fechaCompra | date: 'dd/MM/yyyy'}}" placeholder="Fecha de compra" id="name-aabc" name="fecha" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
           </div>
           <div class="u-form-email u-form-group">
-            <label for="email-aabc" class="u-custom-font u-heading-font u-label">Cliente:</label>
-            <input type="email" placeholder="Cliente" id="email-aabc" name="cliente" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="email-aabc" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Cliente:</label>
+            <input type="email" value="{{this.nombreCliente}}" placeholder="Cliente" id="email-aabc" name="cliente" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
           </div>
           <div class="u-form-group u-form-group-3">
-            <label for="text-a2f9" class="u-custom-font u-heading-font u-label">Celular:</label>
-            <input type="text" placeholder="Celular" id="text-a2f9" name="celular" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="text-a2f9" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Celular:</label>
+            <input type="text" value="{{this.celular}}" placeholder="Celular" id="text-a2f9" name="celular" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
           </div>
           <div class="u-form-group u-form-group-4">
-            <label for="text-45ce" class="u-custom-font u-heading-font u-label">Correo:</label>
-            <input type="text" placeholder="Correo" id="text-45ce" name="text" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="text-45ce" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Correo:</label>
+            <input type="text" value="{{this.correo}}" placeholder="Correo" id="text-45ce" name="text" class="u-input u-input-rectangle" style="text-align: center; outline: none;" readonly="readonly">
           </div>
           <div class="u-form-group u-form-group-5">
-            <label for="text-bc64" class="u-custom-font u-heading-font u-label">Dirección de domicilio:</label>
-            <input type="text" id="text-bc64" name="Dirección" class="u-input u-input-rectangle" placeholder="Dirección" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="text-bc64" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Dirección de domicilio:</label>
+            <input type="text" id="text-bc64" value="{{this.direccion}}" name="Dirección" class="u-input u-input-rectangle" placeholder="Dirección" style="text-align: center; outline: none;" readonly="readonly">
           </div>
         </form>
       </div>
       <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-form u-form-2">
         <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form-1" style="padding: 10px;">
           <div class="u-form-email u-form-group">
-            <label for="email-3994" class="u-custom-font u-heading-font u-label">Cantidad de articulos:</label>
-            <input type="email" placeholder="Articulos" id="email-3994" name="articulos" class="u-input u-input-rectangle u-white" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="email-3994" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Cantidad de articulos:</label>
+            <input type="email" value="{{this.cantidadArticulos}}" placeholder="Articulos" id="email-3994" name="articulos" class="u-input u-input-rectangle u-white" style="text-align: center; outline: none;" readonly="readonly">
           </div>
           <div class="u-form-group u-form-name">
-            <label for="name-3994" class="u-custom-font u-heading-font u-label">Metodo de pago:</label>
-            <input type="text" placeholder="Pago" id="name-3994" name="pago" class="u-input u-input-rectangle u-white" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="name-3994" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Metodo de pago:</label>
+            <input type="text" value="{{this.pago}}" placeholder="Pago" id="name-3994" name="pago" class="u-input u-input-rectangle u-white" style="text-align: center; outline: none;" readonly="readonly">
           </div>
           <div class="u-form-group u-form-group-9">
-            <label for="text-7995" class="u-custom-font u-heading-font u-label">Total:</label>
-            <input type="text" placeholder="Total" id="text-7995" name="total" class="u-input u-input-rectangle u-white" style="text-align: center; outline: none;" readonly="readonly">
+            <label for="text-7995" class="u-custom-font u-heading-font u-label" style="font-weight: bold">Total:</label>
+            <input type="text" value="{{this.total}}" placeholder="Total" id="text-7995" name="total" class="u-input u-input-rectangle u-white" style="text-align: center; outline: none;" readonly="readonly">
           </div>
         </form>
       </div>
@@ -61,7 +61,7 @@
             </div>
             <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
               <div class="u-container-layout u-valign-top u-container-layout-2">
-                <a href="/catalogo" data-page-id="50865995" class="u-align-center-sm u-align-center-xs u-btn u-btn-round u-button-style u-gradient u-none u-radius-4 u-text-body-alt-color u-btn-2"> &nbsp;Salir</a>
+                <a (click)="salir()" data-page-id="50865995" class="u-align-center-sm u-align-center-xs u-btn u-btn-round u-button-style u-gradient u-none u-radius-4 u-text-body-alt-color u-btn-2"> &nbsp;Salir</a>
               </div>
             </div>
           </div>

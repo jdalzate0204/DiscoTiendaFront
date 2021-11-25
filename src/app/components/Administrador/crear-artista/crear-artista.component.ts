@@ -88,21 +88,21 @@ export class CrearArtistaComponent implements OnInit {
      this.artistaService.postCrearArtista(artista).subscribe(data =>{
       this._snackBar.open('Artista registrado exitosamente','cerrar',{
         duration:3000
-     })
+     });
+     this.actualizarArtista();
       this.onResetForm();
      },err=>{
-        if(err.status ==400){
-          this._snackBar.open('Error de validaciones','cerrar',{
-            duration:3000
+        if(err.status == 400){
+          this._snackBar.open(err.error.mensaje,'cerrar',{
+            duration:5000
          });
 
         }else if (err.status==409){
-          this._snackBar.open('El artista ya esta registrado','cerrar',{
-             duration:3000
+          this._snackBar.open(err.error.mensaje,'cerrar',{
+             duration:5000
           });
         }
      });
-
    }else{
     let error =this.mensajeError();
     this._snackBar.openFromComponent(ValidacionComponent, {
@@ -143,9 +143,18 @@ export class CrearArtistaComponent implements OnInit {
     this.artistaService.putArtista(this.artistaEditar).subscribe(data=>{
       this._snackBar.open("Artista editado con éxito", "close", { duration: 3000 });
         this.actualizarArtista();
-
-    })
-   })
+    }, err => {
+      if(err.status == 400) {
+        this._snackBar.open(err.error.mensaje, 'Cerrar', {
+          duration: 5000
+        });
+      } else if (err.status == 409) {
+        this._snackBar.open(err.error.mensaje, 'Cerrar', {
+          duration: 5000
+        });
+      }
+    });
+   });
   }
 
   actualizarArtista(){

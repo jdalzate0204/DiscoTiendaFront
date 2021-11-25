@@ -93,20 +93,20 @@ export class CrearAlbumComponent implements OnInit {
       this.albumService.postCrearAlbum(album).subscribe(data => {
         this._snackBar.open('Álbum registrado exitosamente', 'Cerrar', {
           duration: 3000
-        })
+        });
+        this.actualizarAlbum();
         this.onResetForm();
       }, err => {
         if(err.status == 400) {
-          this._snackBar.open('Error de validación de campos', 'Cerrar', {
-            duration: 3000
+          this._snackBar.open(err.error.mensaje, 'Cerrar', {
+            duration: 5000
           });
         } else if (err.status == 409) {
-          this._snackBar.open('El album ya está registrado', 'Cerrar', {
-            duration: 3000
+          this._snackBar.open(err.error.mensaje, 'Cerrar', {
+            duration: 5000
           });
         }
       });
-
     } else {
       let error = this.mensajeError();
 
@@ -152,9 +152,19 @@ export class CrearAlbumComponent implements OnInit {
         this._snackBar.open("Álbum editada con éxito", "close", { duration: 3000 });
         this.actualizarAlbum();
 
-      })
+      }, err => {
+        if(err.status == 400) {
+          this._snackBar.open(err.error.mensaje, 'Cerrar', {
+            duration: 5000
+          });
+        } else if (err.status == 409) {
+          this._snackBar.open(err.error.mensaje, 'Cerrar', {
+            duration: 5000
+          });
+        }
+      });
 
-    })
+    });
   }
 
   actualizarAlbum(){

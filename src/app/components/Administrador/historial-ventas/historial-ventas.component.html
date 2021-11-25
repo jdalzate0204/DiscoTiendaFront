@@ -16,16 +16,8 @@
         <form action="#" method="POST" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" source="custom" name="form-1" style="padding: 10px;">
           <div class="u-form-group u-form-name">
             <label for="name-1c04" class="u-custom-font u-form-control-hidden u-heading-font u-label"></label>
-            <input type="text" placeholder="Buscar" id="name-1c04" name="inputBuscar" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" maxlength="50">
+            <input (input)="filtrar($event)" type="text" placeholder="Buscar por nombre cliente, correo y metodo de pago" id="name-1c04" name="inputBuscar" class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" maxlength="50">
           </div>
-          <div class="u-align-left u-form-group u-form-submit">
-            <a href="#" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-dark-1 u-radius-25 u-btn-1">Buscar<br>
-            </a>
-            <input type="submit" value="submit" class="u-form-control-hidden">
-          </div>
-          <div class="u-form-send-message u-form-send-success"> Gracias! Tu mensaje ha sido enviado. </div>
-          <div class="u-form-send-error u-form-send-message"> No se puede enviar su mensaje. Por favor, corrija los errores y vuelva a intentarlo. </div>
-          <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
     </div>
@@ -35,62 +27,38 @@
       <div class="u-expanded-width u-table u-table-responsive u-table-1">
         <table class="u-table-entity u-table-entity-1">
           <colgroup>
-            <col width="14.3%">
-            <col width="14.3%">
-            <col width="13.4%">
-            <col width="15.1%">
-            <col width="14.3%">
-            <col width="14.6%">
-            <col width="14%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
+            <col width="12.5%">
           </colgroup>
           <thead class="u-align-center u-custom-font u-heading-font u-palette-5-dark-1 u-table-header u-table-header-1">
             <tr style="height: 44px;">
-              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Colum 1</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell"> Colum 2</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Colum 3</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Colum 4</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Colum 5</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Colum 6</th>
-              <th class="u-border-1 u-border-grey-50 u-table-cell">Colum 7<br>
+              <th class="u-align-center u-border-1 u-border-grey-50 u-table-cell">Nombre Cliente</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Celular</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Correo</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Direccion</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Fecha Compra</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Cantidad Articulos</th>
+              <th class="u-border-1 u-border-grey-50 u-table-cell">Total<br>
+                <th class="u-border-1 u-border-grey-50 u-table-cell">Metodo de Pago<br>
               </th>
             </tr>
           </thead>
           <tbody class="u-align-center u-custom-font u-heading-font u-table-body u-white u-table-body-1">
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 1</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 2</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 3</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-            </tr>
-            <tr style="height: 44px;">
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Row 4</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
-              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">Description</td>
+            <tr *ngFor="let venta of ventaMostrar" style="height: 44px;">
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{venta.nombreCliente}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{venta.celular}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{venta.correo}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{venta.direccion}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{venta.fechaCompra | date: 'dd/MM/yyyy'}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{venta.cantidadArticulos}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">$ {{venta.total}}</td>
+              <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{venta.pago}}</td>
             </tr>
           </tbody>
         </table>

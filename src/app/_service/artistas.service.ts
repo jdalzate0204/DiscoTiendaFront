@@ -41,7 +41,7 @@ export class ArtistaService {
   }
 
   getVistaArtista() {
-    return this.http.get<VistaArtista[]>(this.URL + "/vista");
+    return this.http.get<VistaArtista[]>(this.URL + "/listarVista");
   }
 
   getListarId(id:number){

@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AlbumSelect } from 'src/app/_model/AlbumSelect';
@@ -104,16 +104,17 @@ export class CrearCancionComponent implements OnInit {
       this.cancionService.postCrearCancion(cancion).subscribe( data => {
         this._snackBar.open('Canción registrada exitosamente', 'Cerrar', {
           duration: 3000
-        })
+        });
+        this.actualizarCancion();
         this.onResetForm();
       }, err => {
         if(err.status == 400) {
-          this._snackBar.open('Error de validación de campos', 'Cerrar', {
-            duration: 3000
+          this._snackBar.open(err.error.mensaje, 'Cerrar', {
+            duration: 5000
           });
         } else if (err.status == 409) {
-          this._snackBar.open('La canción ya está registrada', 'Cerrar', {
-            duration: 3000
+          this._snackBar.open(err.error.mensaje, 'Cerrar', {
+            duration: 5000
           });
         }
       });
@@ -160,8 +161,18 @@ export class CrearCancionComponent implements OnInit {
     this.cancionService.putCancion(this.cancionEditar).subscribe(data=>{
       this._snackBar.open("Cancion editada con éxito", "close", { duration: 3000 });
        this.actualizarCancion();
-    })
-   })
+    }, err => {
+      if(err.status == 400) {
+        this._snackBar.open(err.error.mensaje, 'Cerrar', {
+          duration: 5000
+        });
+      } else if (err.status == 409) {
+        this._snackBar.open(err.error.mensaje, 'Cerrar', {
+          duration: 5000
+        });
+      }
+    });
+   });
   }
 
   actualizarCancion(){

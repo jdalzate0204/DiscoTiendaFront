@@ -13,7 +13,7 @@ export class AdministradorService {
   private URL: string =environment.API+'/auth';
 
   postLogin(administrador :Administrador){
-    return this.http.post<Administrador>(this.URL+"/login",administrador);
+    return this.http.post<any>(this.URL+"/login",administrador);
   }
 
   deleteCerrarSesion(idAdministrador:number){
