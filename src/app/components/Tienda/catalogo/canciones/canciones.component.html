@@ -30,14 +30,16 @@
     <div class="u-table u-table-responsive u-table-1">
       <table class="u-table-entity">
         <colgroup>
-          <col width="25%">
-          <col width="25%">
-          <col width="25.000000000000007%">
-          <col width="24.900000000000006%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
+          <col width="20%">
         </colgroup>
         <thead class="u-align-center u-custom-font u-grey-50 u-heading-font u-table-header u-table-header-1">
           <tr style="height: 21px;">
             <th class="u-border-1 u-border-grey-50 u-table-cell">Nombre Canción</th>
+            <th class="u-border-1 u-border-grey-50 u-table-cell">Duración</th>
             <th class="u-border-1 u-border-grey-50 u-table-cell">Formato</th>
             <th class="u-border-1 u-border-grey-50 u-table-cell">Precio</th>
             <th class="u-border-1 u-border-grey-50 u-table-cell">Albúm</th>
@@ -46,6 +48,7 @@
         <tbody class="u-align-center u-custom-font u-heading-font u-table-body">
           <tr *ngFor="let cancion of cancionInterfaz" style="height: 34px;">
             <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancion.nombre}}</td>
+            <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancion.duracion}}</td>
             <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancion.formato}}</td>
             <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancion.precio}}</td>
             <td class="u-border-1 u-border-grey-40 u-border-no-left u-border-no-right u-table-cell">{{cancion.album}}</td>
@@ -67,6 +70,6 @@
       </form>
     </div>
     <a (click)="agregarCarrito()" class="u-border-none u-btn u-btn-round u-button-style u-custom-font u-heading-font u-hover-palette-1-dark-1 u-radius-25 u-btn-4">Agregar al Carrito</a>
-    <a href="/carrito" class="u-border-none u-btn u-btn-round u-button-style u-custom-font u-heading-font u-hover-palette-1-dark-1 u-radius-25 u-btn-5">Ver Carrito</a>
+    <a (click)="pasarACarrito()" class="u-border-none u-btn u-btn-round u-button-style u-custom-font u-heading-font u-hover-palette-1-dark-1 u-radius-25 u-btn-5">Ver Carrito</a>
   </div>
 </section>

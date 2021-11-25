@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Artista } from '../_model/Artista';
@@ -13,15 +13,22 @@ import { VistaArtista } from '../_model/VistaArtista';
 export class ArtistaService {
 
  private URL: string = environment.API + '/artistas';
+ 
 
   constructor(private http: HttpClient) { }
+
+  tk!: string;
 
   postCrearArtista(artista: Artista){
     return this.http.post<Artista>(this.URL + "/guardar", artista);
   }
 
   getlistarGenero(){
-    return this.http.get<GeneroMusical[]>(this.URL+"/listarGenero");
+    //let tk = sessionStorage.getItem(environment.TOKEN);
+    //let headers = new HttpHeaders().set('Authorization', tk);
+    return this.http.get<GeneroMusical[]>(this.URL+"/listarGenero"/*, { 
+      headers: new HttpHeaders({'Authorization': tk})
+    }*/);
   }
 
   getlistarSexo(){

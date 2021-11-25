@@ -86,6 +86,7 @@ export class CancionesComponent implements OnInit {
           cancionNueva.formato = element.formato;
           cancionNueva.precio = element.precio;
           cancionNueva.album = element.album;
+          cancionNueva.duracion = element.duracion;
 
           this.cancionInterfaz.push(cancionNueva);
         });
@@ -132,7 +133,7 @@ export class CancionesComponent implements OnInit {
     if(this.cancionInterfaz.length == 0) {
       this._snackBar.open('No ha seleccionado ninguna canción', 'cerrar', {
         duration: 5000
-      });
+    });
 
     } else {
       this.cancionInterfaz.forEach(element => {
@@ -151,6 +152,10 @@ export class CancionesComponent implements OnInit {
       })
     }
   }
+
+  pasarACarrito() {
+    this.router.navigate(['/carrito']);
+  }
 }
 
 class CancionInterfaz {
@@ -160,4 +165,5 @@ class CancionInterfaz {
   formato!: string;
   album!: string;
   descripcion!: string;
+  duracion!: string;
 }
